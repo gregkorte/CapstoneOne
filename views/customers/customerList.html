@@ -1,0 +1,23 @@
+<h1>Customer List</h1>
+  <table class="table table-striped">
+  	<thead>
+	    <tr>
+	    	<th>Customer</th>
+	    	<th>Route Day</th>
+	    	<th>Phone</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<tr ng-repeat="(customerId, customer) in customer.customers">
+	    	<td>{{customer.firstName}} {{customer.lastName}}</a>
+	    	</td>
+	    	<td>{{service.day}}</td>
+	    	<td><a href="tel:{{customer.phone}}">{{customer.phone}}</a></td>
+	    	<td>
+	    		<a class="btn btn-primary" href="/#/customers/{{customerId}}">Profile</a>
+	    		<a class="btn btn-success" href="/#/customers/{{customerId}}/edit">Edit</a>
+	    		<button class="btn btn-danger" ng-click="customer.removeCustomer(customerId)">Delete</button>
+	    	</td>
+	    </tr>
+	  </tbody>
+  </table>

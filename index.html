@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="poolApp">
+<head>
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+<div class="container">
+  <h1><img class="logo" src="img/logo_sm.svg" /></h1>
+  <a class="btn btn-success" href="/#/login" ng-hide="user" ng-show="location != '/login'">Login</a>
+    <a class="btn btn-warning" href="/#/changepassword" ng-show="user">Change Password</a>
+    <a class="btn btn-danger" href="/#/logout" ng-show="user">Logout</a>
+  <div ng-view></div>
+  </div>
+<script src="bower_components/firebase/firebase.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/main.config.js"></script>
+<script src="js/main.constants.js"></script>
+<script src="js/auth/auth.config.js"></script>
+<script src="js/auth/auth.controller.js"></script>
+<script src="js/auth/auth.factory.js"></script>
+<script src="js/customers/customers.config.js"></script>
+<script src="js/customers/customers.controller.js"></script>
+<script src="js/customers/customers.factory.js"></script>
+<script src="js/products/products.config.js"></script>
+<script src="js/products/products.controller.js"></script>
+<script src="js/products/products.factory.js"></script>
+<div class="login_modal hidden">
+</body>
+</html>
