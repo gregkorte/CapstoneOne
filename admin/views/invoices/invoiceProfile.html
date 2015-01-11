@@ -1,0 +1,95 @@
+<div class="invoice">
+	<div class="row invoiceLogo">
+		<div class="col-xs-10"><img src="img/logo_invoice_sm.png" /></div>
+		<div class="col-xs-2 invoiceTitle">INVOICE</div>
+		<div class="col-xs-9 invoiceTagline">where our exceptional service will keep you as our customer, not a contract</div>
+		<div class="col-xs-3"></div>
+	</div>
+
+	<div class="row invoiceFromAddress">
+		<div class="col-xs-9">PO Box 210834</div>
+		<div class="col-xs-3">Date: {{show.date | date:'MM-dd-yyyy'}}</div>
+		<div class="col-xs-9">Nashville, Tn 37221</div>
+		<div class="col-xs-3">Invoice#: {{show.date | date:'yy'}}-{{show.invoiceNumber}}</div>
+		<div class="col-xs-9">615.496.2450</div>
+		<div class="col-xs-3">Terms: 15 days</div>
+		<div class="col-xs-9"></div>
+		<div class="col-xs-3">For: Pool services</div>
+	</div>
+
+	<div class="row invoiceToAddress">
+		<div class="col-xs-12 billToTitle">Bill to:</div>
+		<div class="col-xs-12">{{show.invoice.customer.firstName}} {{show.invoice.customer.lastName}}</div>
+		<div class="col-xs-12">{{show.invoice.customer.address}}</div>
+		<div class="col-xs-12">{{show.invoice.customer.city}}, {{show.invoice.customer.state}} {{show.invoice.customer.zipcode}}</div>
+	</div>
+
+	<div class="table-responsive table-condensed invoiceItemizedList">
+		<table class="table table-bordered table-striped">
+			<thead class="invoiceHeader">
+				<tr>
+					<th class="col-xs-8">Description</th>
+					<th class="col-xs-1">Qty</th>
+					<th class="col-xs-1">Rate</th>
+					<th class="col-xs-2">Amount</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="col-xs-8">{{show.invoice.items.services.service.name}}</td>
+					<td class="col-xs-1">{{show.invoice.items.services.service.qty}}</td>
+					<td class="col-xs-1">{{show.invoice.items.services.service.cost | currency}}</td>
+					<td class="col-xs-2 text-right">{{show.invoice.items.services.service.qty * show.invoice.items.services.service.cost | currency}}</td>
+				</tr>
+				<tr>
+					<td class="col-xs-8">{{show.invoice.items.products.product.name}}</td>
+					<td class="col-xs-1">{{show.invoice.items.products.product.qty}}</td>
+					<td class="col-xs-1">{{show.invoice.items.products.product.cost | currency}}</td>
+					<td class="col-xs-2 text-right">{{show.invoice.items.products.product.qty * show.invoice.items.products.product.cost | currency}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="table-responsive table-condensed invoiceTotals text-right">
+		<table class="table table-bordered table-striped">
+			<tr>
+				<td class="col-xs-8"></td>
+				<td class="col-xs-2">Subtotal</td>
+				<td class="col-xs-2">{{subtotal() | currency}}</td>
+			</tr>
+			<tr>
+				<td class="col-xs-8"></td>
+				<td class="col-xs-2">Tax Rate</td>
+				<td class="col-xs-2">9.25%</td>
+			</tr>
+			<tr>
+				<td class="col-xs-8"></td>
+				<td class="col-xs-2">Sales Tax</td>
+				<td class="col-xs-2">{{salesTax() | currency}}</td>
+			</tr>
+			<tr>
+				<td class="col-xs-8"></td>
+				<td class="col-xs-2">Other</td>
+				<td class="col-xs-2">{{show.invoice.other | currency}}</td>
+			</tr>
+			<tr>
+				<td class="col-xs-8"></td>
+				<td class="col-xs-2">Total</td>
+				<td class="col-xs-2">{{total() | currency}}</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="row invoiceNotes">
+		<div class="col-xs-12">Make all checks payable to Harpeth Springs Pool Company.</div>
+		<div class="col-xs-12">*Please enclose blue statement with check.</div>
+		<div class="col-xs-12">**Taxable item</div>
+		<div class="col-xs-12">Please remit payment within 15 days. Overdue accounts will incur a 1% service charge per month.</div>
+		<div class="col-xs-12">Follow us on <a>Facebook</a> &amp; <a>Twitter</a>.</div>
+	</div>
+
+	<div class="row invoiceMessage">
+		<div class="col-xs-12 text-center">Thank you for your business!</div>
+	</div>
+</div>

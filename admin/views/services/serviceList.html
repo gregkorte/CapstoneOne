@@ -1,0 +1,24 @@
+<div class="service_list">
+	<h1>Service List</h1>
+	<table class="table table-striped">
+		<thead>
+	    <tr>
+	    	<th>Service</th>
+	    	<th>Cost</th>
+	    	<th>Work Unit</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<tr ng-repeat="(serviceId, service) in serviceList.services">
+	    	<td>{{service.name}}</td>
+	    	<td>{{service.cost | currency}}</td>
+	    	<td>{{service.workUnit}}</td>
+	    	<td>
+	    		<a class="btn btn-primary" href="/#/services/{{serviceId}}">Details</a>
+	    		<a class="btn btn-success" href="/#/services/{{serviceId}}/edit">Edit</a>
+	    		<button class="btn btn-danger" ng-click="serviceList.removeService(serviceId)">Delete</button>
+	    	</td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>

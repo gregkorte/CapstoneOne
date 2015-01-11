@@ -1,0 +1,90 @@
+<div class="formContainer">
+  <form name="newInvoiceForm" ng-submit="newInvoiceForm.$valid && add.addNewInvoice()" novalidate>
+
+    <div class="form-group" ng-controller="CustomerController as customer">
+      <label>Select Customer:</label>
+      <div class="row">
+        <div class="col-xs-6">
+          <select class="form-control" ng-model="add.newInvoice.customer" ng-options="customer.lastName for (customerId, customer) in customer.customers"></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-controller="ServiceController as service">
+      <div class="row">
+        <div class="col-xs-6">
+          <label for="serviceName">Select Service:</label>
+        </div>
+        <div class="col-xs-2">
+          <label for="serviceQty">Qty:</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <select id="serviceName" class="form-control" ng-model="add.newInvoice.items.services.service" ng-options="service.name for (serviceId, service) in service.services"></select>
+        </div>
+        <div class="col-xs-2">
+          <input id="serviceQty" type="number" class="form-control" ng-model="add.newInvoice.items.services.service.qty" min="1">
+        </div>
+
+      <div class="addInvoiceItem">
+        <a href ng-click="add.InvoiceService()"class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Service</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group" ng-controller="ProductController as product">
+    <div class="row">
+      <div class="col-xs-6">
+        <label for="selectProduct">Select Product:</label>
+      </div>
+      <div class="col-xs-2">
+        <label for="productQty">Qty:</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <select id="selectProduct" class="form-control" ng-model="add.newInvoice.items.products.product" ng-options="product.name for (productId, product) in product.products"></select>
+      </div>
+      <div class="col-xs-2">
+        <input id="productQty" type="number" class="form-control" ng-model="add.newInvoice.items.products.product.qty" min="1">
+      </div>
+
+      <div class="AddItem">
+        <a href ng-click="add.InvoiceProduct()" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Product</a>
+      </div>
+    </div>
+  </div>
+
+    <input class="btn btn-primary btn-lg btn-block" type="submit" ng-click=" invoiceNumber()" value="Create Invoice" ng-disabled="newInvoiceForm.$invalid" />
+  </form>
+
+  <h3>Invoice Summary for {{add.newInvoice.customer.firstName}} {{add.newInvoice.customer.lastName}}</h3>
+  <div class="table-responsive table-condensed invoiceItemizedList">
+    <table class="table table-bordered table-striped">
+      <thead class="invoiceHeader">
+        <tr>
+          <th class="col-xs-8">Description</th>
+          <th class="col-xs-1">Qty</th>
+          <th class="col-xs-1">Rate</th>
+          <th class="col-xs-2">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-xs-8">{{add.newInvoice.items.services.service.name}}</td>
+          <td class="col-xs-1">{{add.newInvoice.items.services.service.qty}}</td>
+          <td class="col-xs-1">{{add.newInvoice.items.services.service.cost | currency}}</td>
+          <td class="col-xs-2 text-right">{{add.newInvoice.items.services.service.qty * add.newInvoice.items.services.service.cost | currency}}</td>
+        </tr>
+        <tr>
+          <td class="col-xs-8">{{add.newInvoice.items.products.product.name}}</td>
+          <td class="col-xs-1">{{add.newInvoice.items.products.product.qty}}</td>
+          <td class="col-xs-1">{{add.newInvoice.items.products.product.cost | currency}}</td>
+          <td class="col-xs-2 text-right">{{add.newInvoice.items.products.product.qty * add.newInvoice.items.products.product.cost | currency}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

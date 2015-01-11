@@ -1,0 +1,27 @@
+<div class="product_profile">
+<div class="productRow">
+<h1 class="productImg"><img ng-src="{{show.product.image}}" />
+	{{show.product.name}}</h1>
+	</div>
+	<dl class="dl-horizontal">
+		<dt>Offered by:</dt>
+			<dd>{{show.product.company}}</dd>
+		<dt>Manufacturer</dt>
+			<dd>{{show.product.mfg}}</dd>
+		<dt>Manufacturer Part Number:</dt>
+			<dd>{{show.product.mfgPartNo}}</dd>
+		<dt>Product Number:</dt>
+			<dd>{{show.product.productNo}}</dd>
+		<dt>Description:</dt>
+			<dd>{{show.product.description}}</dd>
+		<dt>Department:</dt>
+			<dd>{{show.product.department}}</dd>
+		<dt>Product Line:</dt>
+			<dd>{{show.product.productLine}}</dd>
+		<dt>UPC:</dt>
+			<dd>{{show.product.upc}}</dd>
+		<dt>Cost:</dt>
+			<dd>{{show.product.cost | currency}}</dd>
+		<dt></dt>
+	</dl>
+</div>

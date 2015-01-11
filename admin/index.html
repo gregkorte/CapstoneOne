@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="poolApp">
+<head>
+<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="styles/styles.css" />
+<link rel="shortcut icon" type="image/x-icon" href="http://www.hspoolcompany.com/images/favicon.ico" />
+
+</head>
+<body>
+<div class="container">
+  <h1><img class="logo" src="img/logo_sm.svg" /></h1>
+  <a class="btn btn-primary" href="/#/" ng-show="user">Home</a>
+  <a class="btn btn-success" href="/#/login" ng-hide="user" ng-show="location != '/#/login'">Login</a>
+    <a class="btn btn-warning" href="/#/changepassword" ng-show="user">Change Password</a>
+    <a class="btn btn-danger" href="/#/logout" ng-show="user">Logout</a>
+  <div ng-view></div>
+  </div>
+<script src="bower_components/firebase/firebase.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/main.config.js"></script>
+<script src="js/main.constants.js"></script>
+<script src="js/auth/auth.config.js"></script>
+<script src="js/auth/auth.controller.js"></script>
+<script src="js/auth/auth.factory.js"></script>
+<script src="js/customers/customers.config.js"></script>
+<script src="js/customers/customers.controller.js"></script>
+<script src="js/customers/customers.factory.js"></script>
+<script src="js/products/products.config.js"></script>
+<script src="js/products/products.controller.js"></script>
+<script src="js/products/products.factory.js"></script>
+<script src="js/services/service.config.js"></script>
+<script src="js/services/service.controller.js"></script>
+<script src="js/services/service.factory.js"></script>
+<script src="js/invoices/invoice.config.js"></script>
+<script src="js/invoices/invoice.controller.js"></script>
+<script src="js/invoices/invoice.factory.js"></script>
+</body>
+</html>

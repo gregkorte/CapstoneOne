@@ -1,0 +1,26 @@
+<div class="invoice_list">
+  <h1>Invoice List</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Customer</th>
+        <th>Route Day</th>
+        <th>Invoice Total</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="(invoiceId, invoice) in invoiceList.invoices">
+        <td>{{invoice.customer.firstName}} {{invoice.customer.lastName}}</td>
+        <td>{{invoice.customer.routeDay}}</td>
+        <td ng-controller="ShowInvoiceController">{{show.invoice.total}}</td>
+        <td><a href="tel:{{invoice.customer.phone}}">{{invoice.customer.phone}}</a></td>
+        <td>
+          <a class="btn btn-primary" href="/#/invoices/{{invoiceId}}">View</a>
+          <a class="btn btn-success" href="/#/invoices/{{invoiceId}}/edit">Edit</a>
+          <button class="btn btn-danger" ng-click="invoiceList.removeInvoice(invoiceId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

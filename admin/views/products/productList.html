@@ -1,0 +1,24 @@
+<div class="product_list">
+	<h1>Product List</h1>
+	<table class="table table-striped">
+		<thead>
+	    <tr>
+	    	<th>Product</th>
+	    	<th>Mfg #</th>
+	    	<th>Cost</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<tr ng-repeat="(productId, product) in productList.products">
+	    	<td>{{product.name}}</td>
+	    	<td>{{product.mfgPartNo}}</td>
+	    	<td>{{product.cost | currency}}</td>
+	    	<td>
+	    		<a class="btn btn-primary" href="/#/products/{{productId}}">Details</a>
+	    		<a class="btn btn-success" href="/#/products/{{productId}}/edit">Edit</a>
+	    		<button class="btn btn-danger" ng-click="productList.removeProduct(productId)">Delete</button>
+	    	</td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>

@@ -1,0 +1,57 @@
+img.logo {
+	max-width: 100%;
+	height: auto;
+}
+.formContainer {
+  margin: 26px 0;
+}
+.invoice, .customer_profile, .service_profile, .product_profile  {
+	margin: 30px 20px 20px;
+	border: #888 solid 1px;
+	border-radius: 4px;
+	padding: 20px;
+	box-shadow: 0 0 30px #888;
+}
+.product_profile {
+	padding: 0 20px 20px;
+}
+.invoice_list, .product_list, .service_list, .customer_list {
+	margin: 30px 20px 20px;
+}
+.invoiceHeader {
+	background: #F2F6F2;
+}
+.invoiceTagline {
+	color: #001578;
+	font-family: Georgia, serif;
+	font-style: italic;
+	text-indent: 90px;
+	text-shadow: 1px 0 0 #92F569;;
+}
+.invoiceFromAddress, .invoiceItemizedList, .invoiceNotes, .invoiceMessage {
+	margin: 10px 0;
+}
+.invoiceToAddress {
+	margin: 20px 0;
+}
+.invoiceMessage, .billToTitle {
+	font-weight: bold;
+}
+.invoiceNotes {
+	font-size: .8em;
+}
+.invoiceTitle {
+	top: 10px;
+	color: #A1D2FB;
+	transform:scale(1.8,1); /* W3C */
+  -webkit-transform:scale(1.8,1); /* Safari and Chrome */
+  -moz-transform:scale(1.8,1); /* Firefox */
+  -ms-transform:scale(1.8,1); /* IE 9 */
+  -o-transform:scale(1.8,1);
+}
+h1 {
+	margin-top: 0;
+}
+.table>thead>tr>th {
+	border-bottom: none;
+}

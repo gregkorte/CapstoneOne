@@ -1,0 +1,42 @@
+{
+	"customers": {
+		"1": {
+			"productName": "Chris",
+			"description": "Laws",
+			"productNumber": "4768 Harpeth Springs Dr",
+			"city": "Nashville",
+			"state": "Tn",
+			"zipCode": "37221",
+			"phone": "615-496-3454",
+			"email": "service@hspoolcompany.com"
+		},
+		"2": {
+			"firstName": "Greg",
+			"lastName": "Korte",
+			"address": "769 Wolfeboro Ln",
+			"city": "Nashville",
+			"state": "Tn",
+			"zipCode": "37221",
+			"phone": "615-844-4098",
+			"email": "admin@hspoolcompany.com"
+		}
+	},
+	"products": {
+		"1": {
+			"productName": "DOLPHIN C5",
+			"description": "DOLPHIN C5",
+			"productNumber": "MAY-20-1072",
+			"manufacturerPartNumber": "9999396X-C5",
+			"cost": "$500.00",
+			"markup": "20%"
+		},
+		"2": {
+			"productName": "PRO W/CADDY & REMOTE PROX2 DOLPHIN DIAGNOSTI",
+			"description": "Dolphin PROX 2 Cleans pool floor, cove, walls and scrubs the waterline Recommended for small to mid-size commercial pools up ",
+			"productNumber": "MAY-20-1059",
+			"manufacturerPartNumber": "9999399X-BL4",
+			"cost": "$750.00",
+			"markup": "20%"
+		}
+	}
+}
