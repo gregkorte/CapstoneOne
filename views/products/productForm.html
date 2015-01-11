@@ -1,0 +1,53 @@
+<div class="formContainer">
+<form name="newProductForm" ng-submit="newProductForm.$valid && add.addNewProduct()" novalidate>
+<div class="form-group" ng-class="{'has-error': !add.newProduct.name}">
+  <label class="control-label">Name:</label>
+  <input type="text" class="form-control shorten" ng-model="add.newProduct.name" required />
+</div>
+<div class="form-group" ng-class="{'has-error': !add.newProduct.company}">
+  <label class="control-label">Company:</label>
+  <input type="text" class="form-control shorten" ng-model="add.newProduct.company" required />
+</div>
+<div class="form-group" ng-class="{'has-error': !add.newProduct.mfg}">
+  <label class="control-label">Manufacturer:</label>
+  <input type="text" class="form-control shorten" ng-model="add.newProduct.mfg" />
+</div>
+<div class="form-group" ng-class="{'has-error': !add.newProduct.productNo}">
+  <label class="control-label">Product Number:</label>
+  <input type="text" class="form-control shorten" ng-model="add.newProduct.productNo" />
+</div>
+<div class="form-group" ng-class="{'has-error': !add.newProduct.mfgPartNo}">
+  <label class="control-label">Manufacturer Part Number:</label>
+  <input type="text" class="form-control shorten" ng-model="add.newProduct.mfgPartNo" />
+</div>
+<div class="form-group" ng-class="{'has-error': !add.newProduct.uom}">
+  <label class="control-label">Unit of Measurement:</label>
+  <input type="text" maxlength="5" class="form-control shorten" ng-model="add.newProduct.uom" />
+</div>
+<div class="form-group" ng-class="{'has-error': !add.newProduct.description}">
+  <label class="control-label">Description:</label>
+  <input type="text" class="form-control shorten" ng-model="add.newProduct.description" />
+</div>
+<div class="form-group" ng-class="{'has-error': !add.newProduct.department}">
+  <label class="control-label">Department:</label>
+  <input type="text" class="form-control shorten" ng-model="add.newProduct.department" />
+</div>
+<div class="form-group" ng-class="{'has-error': !add.newProduct.productLine}">
+  <label class="control-label">Product Line:</label>
+  <input type="text" class="form-control shorten" ng-model="add.newProduct.productLine" />
+</div>
+<div class="form-group" ng-class="{'has-error': !add.newProduct.upc}">
+  <label class="control-label">UPC:</label>
+  <input type="text" class="form-control shorten" ng-model="add.newProduct.upc" />
+</div>
+<div class="form-group" ng-class="{'has-error': !add.newProduct.cost}">
+  <label class="control-label">Cost:</label>
+  <input type="text" class="form-control shorten" ng-model="add.newProduct.cost" />
+</div>
+<div class="form-group" ng-class="{'has-error': !add.newProduct.image}">
+  <label class="control-label">Image URL:</label>
+  <input type="url" class="form-control shorten" ng-model="add.newProduct.image" />
+</div>
+  <input class="btn btn-primary btn-lg btn-block" type="submit" value="Save" ng-disabled="newProductForm.$invalid" />
+</form>
+</div>

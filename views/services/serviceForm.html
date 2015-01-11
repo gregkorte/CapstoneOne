@@ -1,0 +1,17 @@
+<div class="formContainer">
+<form name="newServiceForm" ng-submit="newServiceForm.$valid && add.addNewService()" novalidate>
+<div class="form-group" ng-class="{'has-error': !add.newService.name}">
+  <label class="control-label">Service:</label>
+  <input type="text" class="form-control shorten" ng-model="add.newService.name" required />
+</div>
+<div class="form-group" ng-class="{'has-error': !add.newService.cost}">
+  <label class="control-label">Cost:</label>
+  <input type="text" class="form-control shorten" ng-model="add.newService.cost" required />
+</div>
+<div class="form-group" ng-class="{'has-error': !add.newService.workUnit}">
+  <label class="control-label">Work Unit:</label>
+  <input type="text" class="form-control shorten" ng-model="add.newService.workUnit" required />
+</div>
+  <input class="btn btn-primary btn-lg btn-block" type="submit" value="Save" ng-disabled="newServiceForm.$invalid" />
+</form>
+</div>
