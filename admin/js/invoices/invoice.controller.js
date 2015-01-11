@@ -47,19 +47,11 @@
         });
       };
 
-      var count;
-      $scope.invoiceNumber = function(){
-      count++;
-        console.log(count);
-      }
-
-
-
-      // vm.addService = function(){
+      // vm.invoiceService = function(){
       //   vm.
       // }
 
-      // vm.addProduct = function(){
+      // vm.invoiceProduct = function(){
       //   vm.
       // }
 

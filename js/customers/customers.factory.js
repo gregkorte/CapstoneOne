@@ -7,11 +7,11 @@
         if (id) {
           return FIREBASE_URL + '/users/' + $rootScope.user.uid +
             '/customers/' + id + '.json?auth=' + $rootScope.user.token;
-          } else {
-              return FIREBASE_URL + '/users/' + $rootScope.user.uid +
-              '/customers.json?auth=' +  $rootScope.user.token;
-            }
-        }
+        } else {
+            return FIREBASE_URL + '/users/' + $rootScope.user.uid +
+            '/customers.json?auth=' +  $rootScope.user.token;
+          }
+      }
 
       function getCustomer(id, cb){
         $http.get(_customerUrl(id))
@@ -26,7 +26,7 @@
       function editCustomer(id, customer){
         $http.put(_customerUrl(id), customer)
           .success(function(data){
-            $location.path('/customers/');
+            $location.path('/customers');
           })
           .error(function(err){
             console.log('Could not edit customer');
@@ -47,7 +47,7 @@
         $http.post(_customerUrl(), customer)
           .success(function(data){
             cb(data);
-            $location.path('/customers/');
+            $location.path('/customers');
           })
           .error(function(err){
             console.log('Could not create customer');
@@ -58,6 +58,7 @@
         $http.delete(_customerUrl(customerId))
           .success(function(){
             cb();
+            $location.path('/customers');
           })
           .error(function(err){
             console.log('Could not delete customer');

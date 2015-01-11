@@ -4,7 +4,7 @@
     .config(function($routeProvider){
       $routeProvider
         .when('/', {
-          templateUrl: 'views/landing.html'
+          templateUrl: 'views/nav.html'
         })
         .otherwise({
           redirectTo: '/'

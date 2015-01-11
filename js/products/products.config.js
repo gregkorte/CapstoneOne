@@ -6,26 +6,26 @@
       $routeProvider
 	      .when('/products', {
 	        templateUrl: 'views/products/productList.html',
-	        controller: 'ItemController',
-	        controllerAs: 'item',
+	        controller: 'ProductController',
+	        controllerAs: 'product',
 	        private: true
 	      })
 	      .when('/products/new', {
 	        templateUrl: 'views/products/productForm.html',
-	        controller: 'ItemController',
-	        controllerAs: 'item',
+	        controller: 'ProductController',
+	        controllerAs: 'add',
 	        private: true
 	      })
 	      .when('/products/:id', {
 	        templateUrl: 'views/products/productProfile.html',
-	        controller: 'ShowController',
-	        controllerAs: 'item',
+	        controller: 'ShowProductController',
+	        controllerAs: 'show',
 	        private: true
 	      })
 	      .when('/products/:id/edit', {
 	        templateUrl: 'views/products/productForm.html',
-	        controller: 'EditController',
-	        controllerAs: 'item',
+	        controller: 'EditProductController',
+	        controllerAs: 'add',
 	        private: true
 	      })
 	  })

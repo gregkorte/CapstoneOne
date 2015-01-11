@@ -2,10 +2,20 @@
   <form name="newInvoiceForm" ng-submit="newInvoiceForm.$valid && add.addNewInvoice()" novalidate>
 
     <div class="form-group" ng-controller="CustomerController as customer">
-      <label>Select Customer:</label>
+      <div class="row">
+        <div class="col-xs-6">
+          <label>Select Customer:</label>
+        </div>
+        <div class="col-xs-2">
+          <label for="invoiceNumber">Invoice#:</label>
+        </div>
+      </div>
       <div class="row">
         <div class="col-xs-6">
           <select class="form-control" ng-model="add.newInvoice.customer" ng-options="customer.lastName for (customerId, customer) in customer.customers"></select>
+        </div>
+        <div class="col-xs-2">
+          <input id="invoiceNumber" type="number" class="form-control" ng-model="add.newInvoice.invoiceNumber" min="1">
         </div>
       </div>
     </div>
@@ -28,7 +38,7 @@
         </div>
 
       <div class="addInvoiceItem">
-        <a href ng-click="add.InvoiceService()"class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Service</a>
+        <a href ng-click="add.invoiceService()"class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Service</a>
       </div>
     </div>
   </div>
@@ -51,7 +61,7 @@
       </div>
 
       <div class="AddItem">
-        <a href ng-click="add.InvoiceProduct()" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Product</a>
+        <a href ng-click="add.invoiceProduct()" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Product</a>
       </div>
     </div>
   </div>

@@ -2,54 +2,51 @@
 	'use strict';
 
 	angular.module('poolApp')
-		.controller('ShowController', function($routeParams, itemFactory){
+		.controller('ShowProductController', function($routeParams, productFactory){
       var vm = this;
       var id = $routeParams.id;
-      itemFactory.getItem(id, function(data){
-        vm.task = data;
+      productFactory.getProduct(id, function(data){
+        vm.product = data;
       });
     })
-    .controller('EditController', function($routeParams, itemFactory){
+    .controller('EditProductController', function($routeParams, productFactory){
       var vm = this;
       var id = $routeParams.id;
 
-      itemFactory.getItem(id, function(data){
-        vm.newTask = data;
+      productFactory.getProduct(id, function(data){
+        vm.newProduct = data;
       });
 
-      vm.addNewItem = function(){
-        itemFactory.editItem(id, vm.newItem);
+      vm.addNewProduct = function(){
+        productFactory.editProduct(id, vm.newProduct);
       };
 
     })
-    .controller('ItemController', function(itemFactory){
+    .controller('ProductController', function(productFactory){
       var vm = this;
 
-      itemFactory.getAllItems(function(data){
-        vm.items = data;
+      productFactory.getAllProducts(function(data){
+        vm.products = data;
       });
 
-      vm.addNewItem = function(){
-        itemFactory.createItem(vm.newItem, function(data){
-          vm.item[data.name/*Should this be changed to fistName*/] = vm.newItem;
-          vm.newItem = _freshItem();
+      vm.addNewProduct = function(){
+        productFactory.createProduct(vm.newProduct, function(data){
+          vm.products = vm.newProduct || {};
+          vm.products[data.name] = vm.newProduct;
+          vm.newProduct = _renewProductForm();
         });
       };
 
-      vm.removeItem = function(itemId){
-        itemFactory.deleteItem(itemId, function(){
-          delete vm.items[itemId];
+      vm.removeProduct = function(productId){
+        productFactory.deleteProduct(productId, function(){
+          delete vm.products[productId];
         });
       };
 
-      vm.newItem = _freshItem();
+      vm.newProduct = _renewProductForm();
 
-      vm.priorityOptions = itemFactory.priorityOptions;
-
-      function _freshItem(){
-        return {
-          priority: 'low'
-        };
+      function _renewProductForm(){
+        return null;
       }
     });
 }());

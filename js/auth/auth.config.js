@@ -3,7 +3,7 @@
     .config(function($routeProvider){
       $routeProvider
 	      .when('/login', {
-	        templateUrl: 'views/login.html',
+	        templateUrl: 'views/auth/login.html',
 	        controller: 'LoginController',
 	        controllerAs: 'login',
 	        resolve: {
@@ -17,7 +17,7 @@
 	        controller: 'LogoutController'
 	      })
 	      .when('/changepassword', {
-	        templateUrl: 'views/changepassword.html',
+	        templateUrl: 'views/auth/changepassword.html',
 	        controller: 'ChangePasswordController',
 	        controllerAs: 'changepw',
 	        private: true
