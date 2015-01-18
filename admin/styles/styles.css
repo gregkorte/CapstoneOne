@@ -2,6 +2,9 @@ img.logo {
 	max-width: 100%;
 	height: auto;
 }
+.auth {
+	float: right;
+}
 .formContainer {
   margin: 26px 0;
 }
@@ -54,4 +57,13 @@ h1 {
 }
 .table>thead>tr>th {
 	border-bottom: none;
+}
+.btn-sphere {
+	display: inline-block;
+	padding: 9px 12px;
+	height: 40px;
+	width: 40px;
+	margin: auto 0;
+	border-radius: 50%;
+	box-shadow: inset -8px -8px 12px rgba(0, 0, 0, .4);
 }

@@ -13,9 +13,9 @@
 <div class="container">
   <h1><img class="logo" src="img/logo_sm.svg" /></h1>
   <a class="btn btn-primary" href="/#/" ng-show="user">Home</a>
-  <a class="btn btn-success" href="/#/login" ng-hide="user" ng-show="location != '/#/login'">Login</a>
-    <a class="btn btn-warning" href="/#/changepassword" ng-show="user">Change Password</a>
-    <a class="btn btn-danger" href="/#/logout" ng-show="user">Logout</a>
+  <!-- <a class="btn auth" href="/#/login" ng-hide="user" ng-show="location != '/#/login'">Login</a> -->
+    <!-- <a class="btn btn-warning" href="/#/changepassword" ng-show="user">Change Password</a> -->
+    <a class="btn auth" href="/#/logout" ng-show="user">Logout</a>
   <div ng-view></div>
   </div>
 <script src="bower_components/firebase/firebase.js"></script>
