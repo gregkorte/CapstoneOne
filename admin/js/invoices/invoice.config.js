@@ -6,26 +6,26 @@
       $routeProvider
 	      .when('/invoices', {
 	        templateUrl: 'views/invoices/invoiceList.html',
-	        controller: 'InvoiceController',
-	        controllerAs: 'invoiceList',
+	        controller: 'ListInvoiceController',
+	        controllerAs: 'list',
 	        private: true
 	      })
 	      .when('/invoices/new', {
 	        templateUrl: 'views/invoices/invoiceForm.html',
 	        controller: 'InvoiceController',
-	        controllerAs: 'add',
+	        controllerAs: 'modify',
 	        private: true
 	      })
 	      .when('/invoices/:id', {
 	        templateUrl: 'views/invoices/invoiceProfile.html',
-	        controller: 'ShowInvoiceController',
-	        controllerAs: 'show',
+	        controller: 'InvoiceProfileController',
+	        controllerAs: 'view',
 	        private: true
 	      })
 	      .when('/invoices/:id/edit', {
 	        templateUrl: 'views/invoices/invoiceForm.html',
-	        controller: 'EditInvoiceController',
-	        controllerAs: 'add',
+	        controller: 'ModifyInvoiceController',
+	        controllerAs: 'modify',
 	        private: true
 	      })
 	  })

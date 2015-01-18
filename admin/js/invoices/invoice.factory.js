@@ -17,9 +17,10 @@
         $http.get(_invoiceUrl(id))
           .success(function(data){
             cb(data);
+            console.log('Success: Got invoice');
           })
           .error(function(err){
-            console.log('Could not get invoice');
+            console.log('Fail: Could not get invoice');
           });
       }
 
@@ -27,9 +28,10 @@
         $http.put(_invoiceUrl(id), invoice)
           .success(function(data){
             $location.path('/invoices');
+            console.log('Success: Edited invoice');
           })
           .error(function(err){
-            console.log('Could not edit invoice');
+            console.log('Fail: Could not edit invoice');
           });
       }
 
@@ -37,9 +39,10 @@
         $http.get(_invoiceUrl())
           .success(function(data){
             cb(data);
+            console.log('Success: Got all invoices');
           })
           .error(function(err){
-            console.log('Could not get all invoices');
+            console.log('Fail: Could not get all invoices');
           });
       }
 
@@ -48,9 +51,10 @@
           .success(function(data){
             cb(data);
             $location.path('/invoices');
+            console.log('Success: Created invoice');
           })
           .error(function(err){
-            console.log('Could not create invoice');
+            console.log('Fail: Could not create invoice');
           });
       }
 
@@ -59,6 +63,7 @@
           .success(function(){
             cb();
             $location.path('/invoices');
+            console.log('Success: Deleted invoice');
           })
           .error(function(err){
             console.log('Could not delete invoice');

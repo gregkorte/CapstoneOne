@@ -44,10 +44,6 @@
         });
       };
 
-      vm.sayHi = function(){
-        console.log("hi");
-      };
-
       vm.newProduct = _renewProductForm();
 
       function _renewProductForm(){
