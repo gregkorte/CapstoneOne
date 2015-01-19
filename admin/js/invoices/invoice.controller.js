@@ -49,6 +49,19 @@
     .controller('InvoiceController', function($scope, invoiceFactory){
       var vm = this;
 
+      vm.leadingZeros = function(number){
+        console.log('leadingZeros running....');
+        var invoiceNumber = number.toString();
+        if (invoiceNumber.length === 1){
+          invoiceNumber = "00" + invoiceNumber;
+        } else if (invoiceNumber.length === 2){
+          invoiceNumber = "0" + invoiceNumber;
+        } else {
+        }
+        console.log(invoiceNumber);
+        return invoiceNumber;
+      };
+
       vm.addNewInvoice = function(){
         invoiceFactory.createInvoice(vm.newInvoice, function(data){
           vm.invoices = vm.newInvoice || {};
@@ -59,11 +72,22 @@
         });
       };
 
+      vm.addServices = function(){
+        console.log('addServices running....')
+      }
+
+      vm.addProducts = function(){
+        console.log('addProducts running....')
+      }
+
       vm.newInvoice = _renewInvoiceForm();
 
       function _renewInvoiceForm(){
         return null;
       }
+
+      // var invoiceNumber = vm.leadingZeros();
+      
 
       // customerFactory.getAllCustomers(function(data){
       //   vm.customers = data;
@@ -81,23 +105,6 @@
       //   vm.invoices = data;
       //   console.log(data);
       // });
-
-      // vm.leadingZeros = function(){
-      //   var invoiceNumber;
-      //   if (invoiceNumber.length === 1){
-      //     "00" + invoiceNumber.toString();
-      //   } else if (invoiceNumber.length === 2){
-      //     "0" + invoiceNumber.toString();
-      //   } else invoiceNumber.toString();
-      // };
-
-      // vm.invoiceService = function(){
-      //   vm.
-      // }
-
-      // vm.invoiceProduct = function(){
-      //   vm.
-      // }
 
       // vm.getCosts = function(data){
       //   angular.forEach(invoices.items, function(cost){
