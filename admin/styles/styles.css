@@ -70,3 +70,6 @@ h1 {
 .btn-sphere:focus {
 	outline-style: none !important;
 }
+.lg-icon {
+	font-size: 1.6em;
+}

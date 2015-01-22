@@ -82,7 +82,7 @@
 			<tr>
 				<td class="col-xs-8"></td>
 				<td class="col-xs-2">Total</td>
-				<td class="col-xs-2"><!-- total() -->{{(view.invoice.items.products.product.qty * view.invoice.items.products.product.cost + view.invoice.items.services.service.qty * view.invoice.items.services.service.cost) * 1.0925 | currency}}</td>
+				<td class="col-xs-2" model="view.invoice.invoiceTotal"><!-- total() -->{{(view.invoice.items.products.product.qty * view.invoice.items.products.product.cost + view.invoice.items.services.service.qty * view.invoice.items.services.service.cost) * 1.0925 | currency}}</td>
 			</tr>
 		</table>
 	</div>

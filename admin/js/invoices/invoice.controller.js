@@ -46,11 +46,12 @@
         return null;
       }
     })
-    .controller('InvoiceController', function($scope, invoiceFactory){
+    .controller('InvoiceController', function($scope, invoiceFactory, serviceFactory, productFactory){
       var vm = this;
 
       vm.leadingZeros = function(number){
         console.log('leadingZeros running....');
+        console.log(number);
         var invoiceNumber = number.toString();
         if (invoiceNumber.length === 1){
           invoiceNumber = "00" + invoiceNumber;
@@ -59,7 +60,7 @@
         } else {
         }
         console.log(invoiceNumber);
-        return invoiceNumber;
+        return vm.invoiceNumber;
       };
 
       vm.addNewInvoice = function(){
@@ -72,12 +73,47 @@
         });
       };
 
-      vm.addServices = function(){
-        console.log('addServices running....')
+      vm.serviceItems = [];
+
+      vm.addServices = function(id, qty){
+        console.log('addServices running....');
+        // var service = service;
+        console.log(id)
+        var qty = qty;
+        vm.serviceItems.push({
+          service: id,
+          qty: qty
+        });
+        console.log(vm.serviceItems);
+        serviceFactory.getService(id, function(data){
+          console.log(data);
+          vm.serviceItems.push(data);
+          console.log(vm.serviceItems)
+        });
+       id = null;
+       qty = null;
       }
 
-      vm.addProducts = function(){
+      vm.productItems = [];
+
+      vm.addProducts = function(id, qty){
         console.log('addProducts running....')
+        // var product = product;
+        console.log(id)
+        var qty = qty;
+        vm.productItems.push({
+          product: id,
+          qty: qty
+        });
+        console.log(vm.productItems)
+        productFactory.getProduct(id, function(data){
+          console.log(data);
+          vm.productItems.push(data);
+          console.log(vm.productItems);
+        });
+        id = null;
+        qty = null;
+
       }
 
       vm.newInvoice = _renewInvoiceForm();
@@ -87,7 +123,6 @@
       }
 
       // var invoiceNumber = vm.leadingZeros();
-      
 
       // customerFactory.getAllCustomers(function(data){
       //   vm.customers = data;
