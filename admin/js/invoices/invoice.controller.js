@@ -73,25 +73,38 @@
         });
       };
 
-      vm.serviceItems = [];
+      vm.serviceInput = [];
+      vm.serviceData = [];
+      vm.invoiceService = [];
+
+      // function mergeServiceData(serviceItems, serviceData){
+      //   console.log('mergeServiceData running....')
+      //   for (var id in vm.serviceInput){vm.invoiceService[id] = vm.serviceInput[id];}
+      //   for (var qty in vm.serviceInput){vm.invoiceService[qty] = vm.serviceInput[qty];}
+      //   for (var name in vm.serviceData){vm.invoiceService[name] = vm.serviceData[name];}
+      //   for (var cost in vm.serviceData){vm.invoiceService[cost] = vm.serviceData[cost];}
+      //   return vm.invoiceService;
+      // }
 
       vm.addServices = function(id, qty){
         console.log('addServices running....');
+        // console.log(id)
         // var service = service;
-        console.log(id)
-        var qty = qty;
-        vm.serviceItems.push({
+        // var qty = qty;
+        vm.serviceInput.push({
           service: id,
           qty: qty
         });
-        console.log(vm.serviceItems);
+        console.log(vm.serviceInput);
         serviceFactory.getService(id, function(data){
-          console.log(data);
-          vm.serviceItems.push(data);
-          console.log(vm.serviceItems)
+          // console.log(data);
+          vm.serviceInput.splice(1, 0, data);
+          console.log(vm.serviceInput);
+          console.log(angular.extend(vm.serviceInput[0], vm.serviceInput[1] );)
         });
-       id = null;
-       qty = null;
+        // mergeServiceData();
+        // vm.serviceInvoice = vm.serviceInput.concat(vm.serviceData);
+        // console.log(vm.invoiceService);
       }
 
       vm.productItems = [];
