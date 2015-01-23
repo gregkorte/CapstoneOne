@@ -74,58 +74,53 @@
       };
 
       vm.serviceInput = [];
-      vm.serviceData = [];
-      vm.invoiceService = [];
+      vm.invoiceService = {};
 
-      // function mergeServiceData(serviceItems, serviceData){
-      //   console.log('mergeServiceData running....')
-      //   for (var id in vm.serviceInput){vm.invoiceService[id] = vm.serviceInput[id];}
-      //   for (var qty in vm.serviceInput){vm.invoiceService[qty] = vm.serviceInput[qty];}
-      //   for (var name in vm.serviceData){vm.invoiceService[name] = vm.serviceData[name];}
-      //   for (var cost in vm.serviceData){vm.invoiceService[cost] = vm.serviceData[cost];}
-      //   return vm.invoiceService;
-      // }
+      function mergeServiceData(input, data){
+        var input = vm.serviceInput[0];
+        var data = vm.serviceInput[1];
+        for (var id in vm.serviceInput[0]){
+            vm.invoiceService[id] = vm.serviceInput[0][id];
+          }
+          for (var qty in vm.serviceInput[0]){
+            vm.invoiceService[qty] = vm.serviceInput[0][qty];
+          }
+        for (var name in vm.serviceInput[1]){
+            vm.invoiceService[name] = vm.serviceInput[1][name];
+          }
+          for (var cost in vm.serviceInput[1]){
+            vm.invoiceService[cost] = vm.serviceInput[1][cost];
+          }
+          return vm.invoiceService;
+      }
 
       vm.addServices = function(id, qty){
         console.log('addServices running....');
-        // console.log(id)
-        // var service = service;
-        // var qty = qty;
         vm.serviceInput.push({
           service: id,
           qty: qty
         });
-        console.log(vm.serviceInput);
         serviceFactory.getService(id, function(data){
-          // console.log(data);
           vm.serviceInput.splice(1, 0, data);
-          _.extend(vm.serviceInput[0], vm.serviceInput[1]);
+          mergeServiceData();
           console.log(vm.serviceInput);
+          console.log(vm.invoiceService);
         });
-        // mergeServiceData();
-        // vm.serviceInvoice = vm.serviceInput.concat(vm.serviceData);
-        // console.log(vm.invoiceService);
       }
 
-      vm.productItems = [];
+      vm.productInput = [];
 
       vm.addProducts = function(id, qty){
         console.log('addProducts running....')
-        // var product = product;
-        console.log(id)
-        var qty = qty;
-        vm.productItems.push({
+        vm.productInput.push({
           product: id,
           qty: qty
         });
-        console.log(vm.productItems)
+        console.log(vm.productInput)
         productFactory.getProduct(id, function(data){
-          console.log(data);
-          vm.productItems.push(data);
-          console.log(vm.productItems);
+          vm.productInput.push(data);
+          console.log(vm.productInput);
         });
-        id = null;
-        qty = null;
 
       }
 

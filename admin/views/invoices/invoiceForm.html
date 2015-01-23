@@ -90,17 +90,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr model="modify.newInvoice.newService" ng-repeat="service in modify.serviceInput">
-          <td class="col-xs-8">{{service.name}}</td>
-          <td class="col-xs-1">{{service.qty}}</td>
-          <td class="col-xs-1">{{service.cost | currency}}</td>
-          <td class="col-xs-2 text-right">{{service.qty * service.cost | currency}}</td>
+        <tr model="modify.newInvoice.newService" ng-repeat="invoiceService in modify.invoiceService">
+          <td class="col-xs-8">{{modify.invoiceService.name}}</td>
+          <td class="col-xs-1">{{modify.invoiceService.qty}}</td>
+          <td class="col-xs-1">{{modify.invoiceService.cost | currency}}</td>
+          <td class="col-xs-2 text-right">{{modify.invoiceService.qty * modify.invoiceService.cost | currency}}</td>
         </tr>
-        <tr model="modify.newInvoice.newProduct" ng-repeat="product in modify.productItems">
-          <td class="col-xs-8">{{product.name}}</td>
-          <td class="col-xs-1">{{product.qty}}</td>
-          <td class="col-xs-1">{{product.cost | currency}}</td>
-          <td class="col-xs-2 text-right">{{product.qty * product.cost | currency}}</td>
+        <tr model="modify.newInvoice.newProduct" ng-repeat="product in modify.invoiceService">
+          <td class="col-xs-8">{{modify.invoiceProduct.name}}</td>
+          <td class="col-xs-1">{{modify.invoiceProduct.qty}}</td>
+          <td class="col-xs-1">{{modify.invoiceProduct.cost | currency}}</td>
+          <td class="col-xs-2 text-right">{{modify.invoiceProduct.qty * modify.invoiceProduct.cost | currency}}</td>
         </tr>
       </tbody>
     </table>
