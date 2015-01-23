@@ -99,8 +99,8 @@
         serviceFactory.getService(id, function(data){
           // console.log(data);
           vm.serviceInput.splice(1, 0, data);
+          _.extend(vm.serviceInput[0], vm.serviceInput[1]);
           console.log(vm.serviceInput);
-          console.log(angular.extend(vm.serviceInput[0], vm.serviceInput[1] );)
         });
         // mergeServiceData();
         // vm.serviceInvoice = vm.serviceInput.concat(vm.serviceData);
