@@ -2,32 +2,8 @@
 	'use strict';
 
 	angular.module('poolApp')
-		.controller('ShowCustomerController', function($routeParams, customerFactory){
-      var vm = this;
-      var id = $routeParams.id;
-      customerFactory.getCustomer(id, function(data){
-        vm.customer = data;
-      });
-    })
-    .controller('EditCustomerController', function($routeParams, customerFactory){
-      var vm = this;
-      var id = $routeParams.id;
-
-      customerFactory.getCustomer(id, function(data){
-        vm.newCustomer = data;
-      });
-
-      vm.addNewCustomer = function(){
-        customerFactory.editCustomer(id, vm.newCustomer);
-      };
-
-    })
     .controller('CustomerController', function(customerFactory){
       var vm = this;
-
-      customerFactory.getAllCustomers(function(data){
-        vm.customers = data;
-      });
 
       vm.addNewCustomer = function(){
         customerFactory.createCustomer(vm.newCustomer, function(data){
@@ -48,5 +24,31 @@
       function _renewCustomerForm(){
         return null;
       }
-    });
+    })
+    .controller('EditCustomerController', function($routeParams, customerFactory){
+      var vm = this;
+      var id = $routeParams.id;
+
+      customerFactory.getCustomer(id, function(data){
+        vm.newCustomer = data;
+      });
+
+      vm.addNewCustomer = function(){
+        customerFactory.editCustomer(id, vm.newCustomer);
+      };
+    })
+    .controller('ShowCustomerController', function($routeParams, customerFactory){
+      var vm = this;
+      var id = $routeParams.id;
+      customerFactory.getCustomer(id, function(data){
+        vm.customer = data;
+      });
+    })
+    .controller('ListCustomersController', function(customerFactory){
+      var vm = this;
+
+      customerFactory.getAllCustomers(function(data){
+        vm.customers = data;
+      });
+    })
 }());

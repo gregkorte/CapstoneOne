@@ -6,7 +6,7 @@
       $routeProvider
 	      .when('/customers', {
 	        templateUrl: 'views/customers/customerList.html',
-	        controller: 'CustomerController',
+	        controller: 'ListCustomersController',
 	        controllerAs: 'customerList',
 	        private: true
 	      })
