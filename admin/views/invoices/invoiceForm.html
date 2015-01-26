@@ -35,11 +35,8 @@
         <div class="col-xs-6">
         <select id="serviceSelect" class="form-control" ng-model="modify.newInvoice.items.services.service.id" ng-options="serviceId as service.name for (serviceId, service) in serviceList.services"></select>
         </div>
-        <!-- <div class="col-xs-6">
-          <select id="serviceSelect" class="form-control" ng-model="modify.newInvoice.items.services.service" ng-options="service.name for (serviceId, service) in serviceList.services"></select>
-        </div> -->
         <div class="col-xs-2">
-          <input id="serviceQty" type="number" class="form-control" ng-model="modify.newInvoice.items.services.service.qty" min="1">
+          <input id="serviceQty" type="number" class="form-control" ng-model="modify.newInvoice.items.services.service.qty" value="1" min="1">
         </div>
 
       <div class="modifyInvoiceItem">
@@ -52,7 +49,7 @@
   <div class="form-group" ng-controller="ProductController as productList">
     <div class="row">
       <div class="col-xs-6">
-        <label for="selectProduct">Select Product:</label>
+        <label for="productSelect">Select Product:</label>
       </div>
       <div class="col-xs-2">
         <label for="productQty">Qty:</label>
@@ -60,11 +57,10 @@
     </div>
     <div class="row">
       <div class="col-xs-6">
-        <select id="selectProduct" class="form-control" ng-model="modify.newInvoice.items.products.product.id" ng-options="productId as product.name for (productId, product) in productList.products"></select>
-        <!-- <select id="selectProduct" class="form-control" ng-model="modify.newInvoice.items.products.product" ng-options="product.name for (productId, product) in productList.products"></select> -->
+        <select id="productSelect" class="form-control" ng-model="modify.newInvoice.items.products.product.id" ng-options="productId as product.name for (productId, product) in productList.products"></select>
       </div>
       <div class="col-xs-2">
-        <input id="productQty" type="number" class="form-control" ng-model="modify.newInvoice.items.products.product.qty" min="1">
+        <input id="productQty" type="number" class="form-control" ng-model="modify.newInvoice.items.products.product.qty" value="1" min="1">
       </div>
 
       <div class="modifyInvoiceItem">
@@ -90,13 +86,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr model="modify.newInvoice.newService" ng-repeat="invoiceService in modify.invoiceService">
+        <tr ng-repeat="invoiceServiceItem in modify.invoiceServiceItem">
           <td class="col-xs-8">{{modify.invoiceService.name}}</td>
           <td class="col-xs-1">{{modify.invoiceService.qty}}</td>
           <td class="col-xs-1">{{modify.invoiceService.cost | currency}}</td>
           <td class="col-xs-2 text-right">{{modify.invoiceService.qty * modify.invoiceService.cost | currency}}</td>
         </tr>
-        <tr model="modify.newInvoice.newProduct" ng-repeat="product in modify.invoiceService">
+        <tr model="modify.newInvoice.newProduct" ng-repeat="invoiceProductItem in modify.invoiceProductItem">
           <td class="col-xs-8">{{modify.invoiceProduct.name}}</td>
           <td class="col-xs-1">{{modify.invoiceProduct.qty}}</td>
           <td class="col-xs-1">{{modify.invoiceProduct.cost | currency}}</td>

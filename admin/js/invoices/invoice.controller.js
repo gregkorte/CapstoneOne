@@ -67,59 +67,93 @@
         invoiceFactory.createInvoice(vm.newInvoice, function(data){
           vm.invoices = vm.newInvoice || {};
           vm.invoices[data.firstName] = vm.newInvoice;
-          // vm.leadingZeros(invoiceNumber);
-          // console.log(invoiceNumber);
           vm.newInvoice = _renewInvoiceForm();
         });
       };
 
       vm.serviceInput = [];
       vm.invoiceService = {};
+      vm.invoiceServiceItem = [];
 
       function mergeServiceData(input, data){
         var input = vm.serviceInput[0];
         var data = vm.serviceInput[1];
-        for (var id in vm.serviceInput[0]){
-            vm.invoiceService[id] = vm.serviceInput[0][id];
+        var invoice = vm.invoiceService;
+        for (var id in input){
+            invoice[id] = input[id];
           }
-          for (var qty in vm.serviceInput[0]){
-            vm.invoiceService[qty] = vm.serviceInput[0][qty];
+          for (var qty in input){
+            invoice[qty] = input[qty];
           }
-        for (var name in vm.serviceInput[1]){
-            vm.invoiceService[name] = vm.serviceInput[1][name];
+        for (var name in data){
+            invoice[name] = data[name];
           }
-          for (var cost in vm.serviceInput[1]){
-            vm.invoiceService[cost] = vm.serviceInput[1][cost];
+          for (var cost in data){
+            invoice[cost] = data[cost];
           }
-          return vm.invoiceService;
+          return invoice;
+      }
+
+      function resetSelectService(serviceSelect, serviceQty) {
+        serviceSelect.selectedIndex = -1;
       }
 
       vm.addServices = function(id, qty){
         console.log('addServices running....');
-        vm.serviceInput.push({
-          service: id,
+        var input = vm.serviceInput;
+        input.push({
+          serviceid: id,
           qty: qty
         });
         serviceFactory.getService(id, function(data){
-          vm.serviceInput.splice(1, 0, data);
-          mergeServiceData();
-          console.log(vm.serviceInput);
-          console.log(vm.invoiceService);
+          input.splice(1, 0, data);
+          mergeServiceData(input[0], input[1]);
+          vm.invoiceServiceItem.push(vm.invoiceService);
+          console.log(vm.invoiceServiceItem);
+          resetSelectService(serviceSelect);
         });
       }
 
       vm.productInput = [];
+      vm.invoiceProduct = {};
+      vm.invoiceProductItem = [];
+
+      function mergeProductData(input, data){
+        var input = vm.productInput[0];
+        var data = vm.productInput[1];
+        var invoice = vm.invoiceProduct;
+        for (var id in input){
+            invoice[id] = input[id];
+          }
+          for (var qty in input){
+            invoice[qty] = input[qty];
+          }
+        for (var name in data){
+            invoice[name] = data[name];
+          }
+          for (var cost in data){
+            invoice[cost] = data[cost];
+          }
+          return invoice;
+      }
+
+      function resetSelectProduct(productSelect, productQty) {
+        productSelect.selectedIndex = -1;
+      }
 
       vm.addProducts = function(id, qty){
-        console.log('addProducts running....')
-        vm.productInput.push({
+        console.log('addProducts running....');
+        var input = vm.productInput;
+        input.push({
           product: id,
           qty: qty
         });
-        console.log(vm.productInput)
         productFactory.getProduct(id, function(data){
-          vm.productInput.push(data);
-          console.log(vm.productInput);
+          input.splice(1, 0, data);
+          mergeProductData(input[0], input[1]);
+          vm.invoiceProductItem.push(vm.invoiceProduct);
+          console.log(vm.invoiceProductItem);
+          resetSelectProduct(productSelect);
         });
 
       }
@@ -129,25 +163,6 @@
       function _renewInvoiceForm(){
         return null;
       }
-
-      // var invoiceNumber = vm.leadingZeros();
-
-      // customerFactory.getAllCustomers(function(data){
-      //   vm.customers = data;
-      // });
-
-      // productFactory.getAllProducts(function(data){
-      //   vm.products = data;
-      // });
-
-      // serviceFactory.getAllServices(function(data){
-      //   vm.services = data;
-      // });
-
-      // invoiceFactory.getAllInvoices(function(data){
-      //   vm.invoices = data;
-      //   console.log(data);
-      // });
 
       // vm.getCosts = function(data){
       //   angular.forEach(invoices.items, function(cost){
