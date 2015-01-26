@@ -86,7 +86,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="invoiceServiceItem in modify.invoiceServiceItem">
+        <tr model="modify.newInvoice.newService" ng-repeat="invoiceServiceItem in modify.invoiceServiceItem track by serviceid">
           <td class="col-xs-8">{{modify.invoiceService.name}}</td>
           <td class="col-xs-1">{{modify.invoiceService.qty}}</td>
           <td class="col-xs-1">{{modify.invoiceService.cost | currency}}</td>

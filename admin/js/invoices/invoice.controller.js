@@ -7,9 +7,22 @@
       var id = $routeParams.id;
       vm.date = new Date;//Moved
 
+      vm.leadingZeros = function(number){
+        console.log('leadingZeros running....');
+        vm.invoiceNumber = number.toString();
+        if (vm.invoiceNumber.length === 1){
+          vm.invoiceNumber = "00" + vm.invoiceNumber;
+        } else if (vm.invoiceNumber.length === 2){
+          vm.invoiceNumber = "0" + vm.invoiceNumber;
+        } else {
+        }
+        console.log(vm.invoiceNumber);
+        return vm.invoiceNumber;
+      };
+
       invoiceFactory.getInvoice(id, function(data){
         vm.invoice = data;
-
+        vm.leadingZeros(data.invoiceNumber);
       });
 
     })
@@ -49,19 +62,19 @@
     .controller('InvoiceController', function($scope, invoiceFactory, serviceFactory, productFactory){
       var vm = this;
 
-      vm.leadingZeros = function(number){
-        console.log('leadingZeros running....');
-        console.log(number);
-        var invoiceNumber = number.toString();
-        if (invoiceNumber.length === 1){
-          invoiceNumber = "00" + invoiceNumber;
-        } else if (invoiceNumber.length === 2){
-          invoiceNumber = "0" + invoiceNumber;
-        } else {
-        }
-        console.log(invoiceNumber);
-        return vm.invoiceNumber;
-      };
+      // vm.leadingZeros = function(number){
+      //   console.log('leadingZeros running....');
+      //   console.log(number);
+      //   var invoiceNumber = number.toString();
+      //   if (invoiceNumber.length === 1){
+      //     invoiceNumber = "00" + invoiceNumber;
+      //   } else if (invoiceNumber.length === 2){
+      //     invoiceNumber = "0" + invoiceNumber;
+      //   } else {
+      //   }
+      //   console.log(invoiceNumber);
+      //   return vm.invoiceNumber;
+      // };
 
       vm.addNewInvoice = function(){
         invoiceFactory.createInvoice(vm.newInvoice, function(data){
