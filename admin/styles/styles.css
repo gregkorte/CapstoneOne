@@ -4,6 +4,8 @@ img.logo {
 }
 .auth {
 	float: right;
+	clear:none;
+	color: #001578;
 }
 .formContainer {
   margin: 26px 0;
@@ -29,7 +31,7 @@ img.logo {
 	font-family: Georgia, serif;
 	font-style: italic;
 	text-indent: 90px;
-	text-shadow: 1px 0 0 #92F569;;
+	text-shadow: 1px 0 0 #92F569;
 }
 .invoiceFromAddress, .invoiceItemizedList, .invoiceNotes, .invoiceMessage {
 	margin: 10px 0;
@@ -72,4 +74,5 @@ h1 {
 }
 .lg-icon {
 	font-size: 1.6em;
+	color: #001578;
 }

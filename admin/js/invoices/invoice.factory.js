@@ -66,7 +66,7 @@
             console.log('Success: Deleted invoice');
           })
           .error(function(err){
-            console.log('Could not delete invoice');
+            console.log('Fail: Could not delete invoice');
           });
       }
 

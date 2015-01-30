@@ -62,20 +62,6 @@
     .controller('InvoiceController', function($scope, invoiceFactory, serviceFactory, productFactory){
       var vm = this;
 
-      // vm.leadingZeros = function(number){
-      //   console.log('leadingZeros running....');
-      //   console.log(number);
-      //   var invoiceNumber = number.toString();
-      //   if (invoiceNumber.length === 1){
-      //     invoiceNumber = "00" + invoiceNumber;
-      //   } else if (invoiceNumber.length === 2){
-      //     invoiceNumber = "0" + invoiceNumber;
-      //   } else {
-      //   }
-      //   console.log(invoiceNumber);
-      //   return vm.invoiceNumber;
-      // };
-
       vm.addNewInvoice = function(){
         invoiceFactory.createInvoice(vm.newInvoice, function(data){
           vm.invoices = vm.newInvoice || {};
@@ -83,6 +69,15 @@
           vm.newInvoice = _renewInvoiceForm();
         });
       };
+
+      // function mergeInvoiceData(services, products){
+      //   var input = vm.serviceInput[0];
+      //   var data = vm.serviceInput[1];
+      //   var invoice = vm.invoiceService;
+      //   for (var id in input){invoice[id] = input[id];}
+      //   for (var name in data){invoice[name] = data[name];}
+      //   return invoice;
+      // }
 
       vm.serviceInput = [];
       vm.invoiceService = {};
@@ -92,19 +87,9 @@
         var input = vm.serviceInput[0];
         var data = vm.serviceInput[1];
         var invoice = vm.invoiceService;
-        for (var id in input){
-            invoice[id] = input[id];
-          }
-          for (var qty in input){
-            invoice[qty] = input[qty];
-          }
-        for (var name in data){
-            invoice[name] = data[name];
-          }
-          for (var cost in data){
-            invoice[cost] = data[cost];
-          }
-          return invoice;
+        for (var id in input){invoice[id] = input[id];}
+        for (var name in data){invoice[name] = data[name];}
+        return invoice;
       }
 
       function resetSelectService(serviceSelect, serviceQty) {
@@ -120,11 +105,12 @@
         });
         serviceFactory.getService(id, function(data){
           input.splice(1, 0, data);
+          console.log(data);
           mergeServiceData(input[0], input[1]);
           vm.invoiceServiceItem.push(vm.invoiceService);
           console.log(vm.invoiceServiceItem);
-          resetSelectService(serviceSelect);
         });
+        resetSelectService(serviceSelect);
       }
 
       vm.productInput = [];
@@ -135,19 +121,11 @@
         var input = vm.productInput[0];
         var data = vm.productInput[1];
         var invoice = vm.invoiceProduct;
-        for (var id in input){
-            invoice[id] = input[id];
-          }
-          for (var qty in input){
-            invoice[qty] = input[qty];
-          }
-        for (var name in data){
-            invoice[name] = data[name];
-          }
-          for (var cost in data){
-            invoice[cost] = data[cost];
-          }
-          return invoice;
+        for (var id in input){invoice[id] = input[id];}
+        for (var qty in input){ invoice[qty] = input[qty];}
+        for (var name in data){invoice[name] = data[name];}
+        for (var cost in data){invoice[cost] = data[cost];}
+        return invoice;
       }
 
       function resetSelectProduct(productSelect, productQty) {
@@ -166,9 +144,8 @@
           mergeProductData(input[0], input[1]);
           vm.invoiceProductItem.push(vm.invoiceProduct);
           console.log(vm.invoiceProductItem);
-          resetSelectProduct(productSelect);
         });
-
+        resetSelectProduct(productSelect);
       }
 
       vm.newInvoice = _renewInvoiceForm();
@@ -177,30 +154,5 @@
         return null;
       }
 
-      // vm.getCosts = function(data){
-      //   angular.forEach(invoices.items, function(cost){
-      //     console.log(invoices.items);
-      //   });
-      // };
-
-      // vm.submitInvoice = function(){
-      //   var invoiceCosts = [];
-      //   getCosts();
-      //   $scope.invoiceCosts.push(cost);
-      //   console.log(invoiceCosts);
-      // };
-
-      // vm.subtotal = function(){
-
-      // }
-
-      // vm.salesTax = function(){
-
-      // }
-
-      // vm.total = function(){
-
-      // }
-      
     });
 }());

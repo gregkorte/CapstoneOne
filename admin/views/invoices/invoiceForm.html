@@ -2,7 +2,7 @@
   <form name="newInvoiceForm" ng-submit="newInvoiceForm.$valid && modify.addNewInvoice()" novalidate>
 
 <!--CUSTOMERS-->
-    <div class="form-group" ng-controller="CustomerController as customerList">
+    <div class="form-group" ng-controller="ListCustomersController as customerList">
       <div class="row">
         <div class="col-xs-6">
           <label>Select Customer:</label>
@@ -13,7 +13,7 @@
       </div>
       <div class="row">
         <div class="col-xs-6">
-          <select class="form-control" ng-model="modify.newInvoice.customer" ng-options="customer.lastName + ', ' + customer.firstName for (customerId, customer) in customerList.customers | orderBy:'customer.lastName'"></select>
+          <select class="form-control" ng-model="modify.newInvoice.customer" ng-options="customer.lastName + ', ' + customer.firstName for (customerId, customer) in customerList.customers"></select>
         </div>
         <div class="col-xs-2">
           <input id="invoiceNumber" type="number" class="form-control" ng-model="modify.newInvoice.invoiceNumber" ng-change="modify.leadingZeros(modify.newInvoice.invoiceNumber)" min="1">
@@ -86,13 +86,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr model="modify.newInvoice.newService" ng-repeat="invoiceServiceItem in modify.invoiceServiceItem track by serviceid">
-          <td class="col-xs-8">{{modify.invoiceService.name}}</td>
-          <td class="col-xs-1">{{modify.invoiceService.qty}}</td>
-          <td class="col-xs-1">{{modify.invoiceService.cost | currency}}</td>
-          <td class="col-xs-2 text-right">{{modify.invoiceService.qty * modify.invoiceService.cost | currency}}</td>
+        <tr model="modify.newInvoice.newService" ng-repeat="invoiceServiceItem in modify.invoiceServiceItem">
+          <td class="col-xs-8">{{invoiceServiceItem.name}}</td>
+          <td class="col-xs-1">{{invoiceServiceItem.qty}}</td>
+          <td class="col-xs-1">{{invoiceServiceItem.cost | currency}}</td>
+          <td class="col-xs-2 text-right">{{invoiceServiceItem.qty * invoiceServiceItem.cost | currency}}</td>
         </tr>
-        <tr model="modify.newInvoice.newProduct" ng-repeat="invoiceProductItem in modify.invoiceProductItem">
+        <tr model="modify.newInvoice.newProduct" ng-repeat="(products, productList) in modify.invoiceProductItem">
           <td class="col-xs-8">{{modify.invoiceProduct.name}}</td>
           <td class="col-xs-1">{{modify.invoiceProduct.qty}}</td>
           <td class="col-xs-1">{{modify.invoiceProduct.cost | currency}}</td>
