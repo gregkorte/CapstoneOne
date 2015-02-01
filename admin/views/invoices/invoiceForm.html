@@ -86,13 +86,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr model="modify.newInvoice.invoiceServiceItem" ng-repeat="invoiceServiceItem in modify.invoiceServiceItem">
+        <tr ng-repeat="invoiceServiceItem in modify.invoiceServiceItems">
           <td class="col-xs-8">{{invoiceServiceItem.name}}</td>
           <td class="col-xs-1">{{invoiceServiceItem.qty}}</td>
           <td class="col-xs-1">{{invoiceServiceItem.cost | currency}}</td>
           <td class="col-xs-2 text-right">{{invoiceServiceItem.qty * invoiceServiceItem.cost | currency}}</td>
         </tr>
-        <tr model="modify.newInvoice.newProduct" ng-repeat="(products, productList) in modify.invoiceProductItem">
+        <tr model="modify.newInvoice.newProduct" ng-repeat="(products, productList) in modify.invoiceProductItem track by productid">
           <td class="col-xs-8">{{modify.invoiceProduct.name}}</td>
           <td class="col-xs-1">{{modify.invoiceProduct.qty}}</td>
           <td class="col-xs-1">{{modify.invoiceProduct.cost | currency}}</td>
