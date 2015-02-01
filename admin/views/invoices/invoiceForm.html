@@ -92,11 +92,11 @@
           <td class="col-xs-1">{{invoiceServiceItem.cost | currency}}</td>
           <td class="col-xs-2 text-right">{{invoiceServiceItem.qty * invoiceServiceItem.cost | currency}}</td>
         </tr>
-        <tr model="modify.newInvoice.newProduct" ng-repeat="(products, productList) in modify.invoiceProductItem track by productid">
-          <td class="col-xs-8">{{modify.invoiceProduct.name}}</td>
-          <td class="col-xs-1">{{modify.invoiceProduct.qty}}</td>
-          <td class="col-xs-1">{{modify.invoiceProduct.cost | currency}}</td>
-          <td class="col-xs-2 text-right">{{modify.invoiceProduct.qty * modify.invoiceProduct.cost | currency}}</td>
+        <tr ng-repeat="invoiceProductItem in modify.invoiceProductItems">
+          <td class="col-xs-8">{{invoiceProductItem.name}}</td>
+          <td class="col-xs-1">{{invoiceProductItem.qty}}</td>
+          <td class="col-xs-1">{{invoiceProductItem.cost | currency}}</td>
+          <td class="col-xs-2 text-right">{{invoiceProductItem.qty * invoiceProductItem.cost | currency}}</td>
         </tr>
       </tbody>
     </table>

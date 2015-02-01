@@ -70,33 +70,20 @@
         });
       };
 
-      // function mergeInvoiceData(services, products){
-      //   var input = vm.serviceInput[0];
-      //   var data = vm.serviceInput[1];
-      //   var invoice = vm.invoiceService;
-      //   for (var id in input){invoice[id] = input[id];}
-      //   for (var name in data){invoice[name] = data[name];}
-      //   return invoice;
-      // }
-
       vm.serviceInput = [];
-      // vm.invoiceService = {};
       vm.serviceMerge = {};
       vm.invoiceServiceItems = [];
 
       function mergeServiceData(input, data){
         var input = vm.serviceInput[0];
         var data = vm.serviceInput[1];
-        // var invoice = vm.invoiceService;
         var merge = vm.serviceMerge;
-        console.log('Creating serviceMerge array of objects....')
+        console.log('Creating serviceMerge array of objects....');
         for (var id in input){merge[id] = input[id];}
         for (var qty in input){merge[qty] = input[qty];}
         for (var name in data){merge[name] = data[name];}
         for (var cost in data){merge[cost] = data[cost];}
-        // for (var id in input){invoice[id] = input[id];}
-        // for (var name in data){invoice[name] = data[name];}
-        console.log(merge);
+        // console.log(merge);
         return merge;
       }
 
@@ -107,10 +94,6 @@
       vm.addServices = function(id, qty){
         console.log('addServices running....');
         var input = vm.serviceInput;
-        // input.push({
-        //   serviceid: id,
-        //   qty: qty
-        // });
         console.log('Adding input to serviceInput array....');
         input.push({id:id, qty:qty});
         console.log(input);
@@ -124,7 +107,6 @@
           console.log(vm.serviceInput);
           console.log('Merging serviceInput array indexes into serviceMerge object....');
           mergeServiceData(input[0], input[1]);
-          // vm.invoiceServiceItems.push(vm.serviceInput);
           console.log(vm.serviceMerge);
           console.log('Pushing serviceMerge object to invoiceServiceItems');
           vm.invoiceServiceItems.push(vm.serviceMerge);
@@ -133,32 +115,25 @@
           vm.serviceMerge = {};
           vm.serviceInput = [];
           console.log(vm.serviceInput);
-        //   console.log(input);
-          // input.splice(1, 0, data);
-          // console.log(input);
-          // console.log(input[0]);
-          // console.log(input[1]);
-          // mergeServiceData(input[0], input[1]);
-          // console.log(vm.invoiceServiceItem);
-          // vm.invoiceServiceItem.push(vm.invoiceService);
-          // console.log(vm.invoiceServiceItem);
         });
         resetSelectService(serviceSelect);
       }
 
       vm.productInput = [];
-      vm.invoiceProduct = {};
-      vm.invoiceProductItem = [];
+      vm.productMerge = {};
+      vm.invoiceProductItems = [];
 
       function mergeProductData(input, data){
         var input = vm.productInput[0];
         var data = vm.productInput[1];
-        var invoice = vm.invoiceProduct;
-        for (var id in input){invoice[id] = input[id];}
-        for (var qty in input){ invoice[qty] = input[qty];}
-        for (var name in data){invoice[name] = data[name];}
-        for (var cost in data){invoice[cost] = data[cost];}
-        return invoice;
+        var merge = vm.productMerge;
+        console.log('Creating serviceMerge array of objects....');
+        for (var id in input){merge[id] = input[id];}
+        for (var qty in input){merge[qty] = input[qty];}
+        for (var name in data){merge[name] = data[name];}
+        for (var cost in data){merge[cost] = data[cost];}
+        console.log(merge);
+        return merge;
       }
 
       function resetSelectProduct(productSelect, productQty) {
@@ -168,15 +143,27 @@
       vm.addProducts = function(id, qty){
         console.log('addProducts running....');
         var input = vm.productInput;
-        input.push({
-          product: id,
-          qty: qty
-        });
+        console.log('Adding input to productInput array....');
+        input.push({id:id, qty:qty});
+        console.log(input);
         productFactory.getProduct(id, function(data){
-          input.splice(1, 0, data);
+          console.log('Getting Firebase service data....');
+          console.log(data);
+          var name = data.name;
+          var cost = data.cost;
+          console.log('Adding product data to productInput array....');
+          vm.productInput.push({name:name, cost:cost});
+          console.log(vm.productInput);
+          console.log('Merging productInput array indexes into productMerge object....');
           mergeProductData(input[0], input[1]);
-          vm.invoiceProductItem.push(vm.invoiceProduct);
-          console.log(vm.invoiceProductItem);
+          console.log(vm.productMerge);
+          console.log('Pushing productMerge object to invoiceServiceItems');
+          vm.invoiceProductItems.push(vm.productMerge);
+          console.log(vm.invoiceProductItems);
+          console.log('Reseting productInput array....');
+          vm.productMerge = {};
+          vm.productInput = [];
+          console.log(vm.productInput);
         });
         resetSelectProduct(productSelect);
       }
