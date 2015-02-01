@@ -106,7 +106,10 @@
         serviceFactory.getService(id, function(data){
           input.splice(1, 0, data);
           console.log(data);
+          console.log(input[0]);
+          console.log(input[1]);
           mergeServiceData(input[0], input[1]);
+          console.log(vm.invoiceServiceItem);
           vm.invoiceServiceItem.push(vm.invoiceService);
           console.log(vm.invoiceServiceItem);
         });
