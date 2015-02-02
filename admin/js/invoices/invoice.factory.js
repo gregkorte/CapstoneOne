@@ -47,6 +47,7 @@
       }
 
       function createInvoice(invoice, cb){
+        console.log(invoice);
         $http.post(_invoiceUrl(), invoice)
           .success(function(data){
             cb(data);
