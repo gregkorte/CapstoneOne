@@ -2,13 +2,23 @@
 	'use strict';
 
 	angular.module('poolApp')
-		.controller('InvoiceProfileController', function($routeParams, invoiceFactory){
+		.controller('InvoiceProfileController', function($scope, $routeParams, invoiceFactory){
       var vm = this;
       var id = $routeParams.id;
       vm.date = new Date;//Moved
 
-      vm.leadingZeros = function(number){
+     invoiceFactory.getInvoice(id, function(data){
+        vm.invoice = data;
+        console.log(data);
+        console.log(data[2]);
+        vm.leadingZeros(data[2].invoiceNumber);
+        // vm.subtotal(data[0]);
+        // vm.other(data[1]);
+      });
+
+     vm.leadingZeros = function(number){
         console.log('leadingZeros running....');
+        // console.log(number);
         vm.invoiceNumber = number.toString();
         if (vm.invoiceNumber.length === 1){
           vm.invoiceNumber = "00" + vm.invoiceNumber;
@@ -16,14 +26,26 @@
           vm.invoiceNumber = "0" + vm.invoiceNumber;
         } else {
         }
-        console.log(vm.invoiceNumber);
         return vm.invoiceNumber;
+
       };
 
-      invoiceFactory.getInvoice(id, function(data){
-        vm.invoice = data;
-        vm.leadingZeros(data.invoiceNumber);
-      });
+      vm.subtotal = function(type){
+        console.log('subtotal running....');
+        console.log(type);
+        var subtotal = 0;
+        angular.forEach($scope.invoice[0], function(el) {
+            subtotal += el[type];
+        });
+        console.log(subtotal);
+        return subtotal;
+      }
+
+      // vm.other = function(services){
+      //   console.log('other running....');
+      //   console.log(services);
+      //   return;
+      // }
 
     })
     .controller('ModifyInvoiceController', function($routeParams, invoiceFactory){
@@ -64,6 +86,23 @@
 
       vm.postInvoiceItems = [];
 
+      // vm.leadingZeros = function(number){
+      //   console.log('leadingZeros running....');
+      //   console.log(number);
+      //   vm.invoiceNumber = number.toString();
+      //   if (vm.invoiceNumber.length === 1){
+      //     vm.invoiceNumber = "00" + vm.invoiceNumber;
+      //   } else if (vm.invoiceNumber.length === 2){
+      //     vm.invoiceNumber = "0" + vm.invoiceNumber;
+      //   } else {
+      //   }
+      //   console.log(vm.invoiceNumber);
+      //   vm.postInvoiceItems.push(vm.newInvoice);
+      //   console.log(vm.postInvoiceItems);
+      //   // return vm.invoiceNumber;
+
+      // };
+
       vm.addNewInvoice = function(){
         var services = vm.invoiceServiceItems;
         var products = vm.invoiceProductItems;
@@ -77,7 +116,7 @@
           vm.invoices = vm.postInvoiceItems || [];
           console.log(vm.invoices);
           vm.invoices[data.firstName] = vm.newInvoice;
-          // console.log(newInvoice);
+          console.log(vm.newInvoice);
           vm.newInvoice = _renewInvoiceForm();
         });
       };

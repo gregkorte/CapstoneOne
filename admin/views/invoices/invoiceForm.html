@@ -16,10 +16,12 @@
           <select class="form-control" ng-model="modify.newInvoice.customer" ng-options="customer.lastName + ', ' + customer.firstName for (customerId, customer) in customerList.customers"></select>
         </div>
         <div class="col-xs-2">
-          <input id="invoiceNumber" type="number" class="form-control" ng-model="modify.newInvoice.invoiceNumber" ng-change="modify.leadingZeros(modify.newInvoice.invoiceNumber)" min="1">
+          <input id="invoiceNumber" type="number" class="form-control" ng-model="modify.newInvoice.invoiceNumber" min="1">
         </div>
       </div>
     </div>
+
+     <!-- ng-change="modify.leadingZeros(modify.newInvoice.invoiceNumber)" -->
 
 <!--SERVICES-->
     <div class="form-group" ng-controller="ServiceController as serviceList">

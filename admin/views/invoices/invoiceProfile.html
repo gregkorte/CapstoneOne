@@ -10,14 +10,12 @@
 		<div class="col-xs-9">PO Box 210834</div>
 		<div class="col-xs-3">Date: {{view.date | date:'MM-dd-yyyy'}}</div>
 		<div class="col-xs-9">Nashville, Tn 37221</div>
-		<div class="col-xs-3">Invoice#: {{view.date | date:'yy'}}-{{view.invoice[2].invoiceNumber}}</span></div>
+		<div class="col-xs-3">Invoice#: {{view.date | date:'yy'}}-{{view.invoiceNumber}}<!-- <span ng-bind="view.leadingZeros(view.invoice[2].invoiceNumber)"></span> --></div>
 		<div class="col-xs-9">615.496.2450</div>
 		<div class="col-xs-3">Terms: 15 days</div>
 		<div class="col-xs-9"></div>
 		<div class="col-xs-3">For: Pool services</div>
 	</div>
-
-	<!-- <span ng-bind="view.leadingZeros(view.invoice.invoiceNumber)"> -->
 
 	<div class="row invoiceToAddress">
 		<div class="col-xs-12 billToTitle">Bill to:</div>
@@ -26,7 +24,7 @@
 		<div class="col-xs-12">{{view.invoice[2].customer.city}}, {{view.invoice[2].customer.state}} {{view.invoice[2].customer.zipcode}}</div>
 	</div>
 
-	<div class="table-responsive table-condensed invoiceItemizedList">
+	<div class="table-responsive table-condensed invoiceItemizedList" >
 		<table class="table table-bordered table-striped">
 			<thead class="invoiceHeader">
 				<tr>
@@ -37,18 +35,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="(invoiceId, invoice) in view.invoice[1]">
-					<td class="col-xs-8">{{invoice.name}}</td>
-					<td class="col-xs-1">{{invoice.qty}}</td>
-					<td class="col-xs-1">{{invoice.cost | currency}}</td>
-					<td class="col-xs-2 text-right">{{invoice.qty * invoice.cost | currency}}</td>
+				<tr ng-repeat="service in view.invoice[1]">
+					<td class="col-xs-8">{{service.name}}</td>
+					<td class="col-xs-1">{{service.qty}}</td>
+					<td class="col-xs-1">{{service.cost | currency}}</td>
+					<td class="col-xs-2 text-right" ng-init="other = service.cost * service.qty">{{other | currency}}</td>
 				</tr>
 
-				<tr ng-repeat="(invoiceId, invoice) in view.invoice[0]">
-					<td class="col-xs-8">{{invoice.name}}</td>
-					<td class="col-xs-1">{{invoice.qty}}</td>
-					<td class="col-xs-1">{{invoice.cost | currency}}</td>
-					<td class="col-xs-2 text-right">{{invoice.cost | currency}}</td>
+				<tr ng-repeat="product in view.invoice[0]">
+					<td class="col-xs-8">{{product.name}}</td>
+					<td class="col-xs-1">{{product.qty}}</td>
+					<td class="col-xs-1">{{product.cost | currency}}</td>
+					<td class="col-xs-2 text-right" ng-init="subtotal = product.qty * product.cost">{{subtotal | currency}}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -59,7 +57,7 @@
 			<tr>
 				<td class="col-xs-8"></td>
 				<td class="col-xs-2">Subtotal</td>
-				<td class="col-xs-2"><!-- subTotal() -->{{view.invoice[0].qty * view.invoice[0].cost + view.invoice[1].qty * view.invoice[1].cost | currency}}</td>
+				<td class="col-xs-2">{{subtotal | currency}}</td>
 			</tr>
 			<tr>
 				<td class="col-xs-8"></td>
@@ -69,17 +67,17 @@
 			<tr>
 				<td class="col-xs-8"></td>
 				<td class="col-xs-2">Sales Tax</td>
-				<td class="col-xs-2"><!-- salesTax() -->{{(view.invoice.items.products.product.qty * view.invoice.items.products.product.cost + view.invoice.items.services.service.qty * view.invoice.items.services.service.cost) * .0925 | currency}}</td>
+				<td class="col-xs-2"> <!-- ng-init="salesTax = subtotal * .0925" -->{{salesTax | currency}}</td>
 			</tr>
 			<tr>
 				<td class="col-xs-8"></td>
 				<td class="col-xs-2">Other</td>
-				<td class="col-xs-2">{{view.invoice.other | currency}}</td>
+				<td class="col-xs-2">{{view.other | currency}}</td>
 			</tr>
 			<tr>
 				<td class="col-xs-8"></td>
 				<td class="col-xs-2">Total</td>
-				<td class="col-xs-2" model="view.invoice.invoiceTotal"><!-- total() -->{{(view.invoice.items.products.product.qty * view.invoice.items.products.product.cost + view.invoice.items.services.service.qty * view.invoice.items.services.service.cost) * 1.0925 | currency}}</td>
+				<td class="col-xs-2"> <!-- ng-init="total = subtotal + salesTax + other" -->{{total | currency}}</td>
 			</tr>
 		</table>
 	</div>
