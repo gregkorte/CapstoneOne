@@ -6,13 +6,15 @@
       var vm = this;
       var id = $routeParams.id;
       vm.date = new Date;//Moved
+      vm.invoiceTotals = [];
 
      invoiceFactory.getInvoice(id, function(data){
         vm.invoice = data;
         console.log(data);
-        console.log(data[2]);
+        // console.log(data[2]);
         vm.leadingZeros(data[2].invoiceNumber);
-        // vm.subtotal(data[0]);
+        // console.log(data[0]);
+        vm.subtotal(data[0]);
         // vm.other(data[1]);
       });
 
@@ -30,15 +32,20 @@
 
       };
 
-      vm.subtotal = function(type){
+      vm.subtotal = function(data){
         console.log('subtotal running....');
-        console.log(type);
         var subtotal = 0;
-        angular.forEach($scope.invoice[0], function(el) {
-            subtotal += el[type];
-        });
-        console.log(subtotal);
-        return subtotal;
+        var cost;
+        var qty;
+        console.log(data);
+        for (var i = 0; i < data.length; i++){
+          console.log(data[i].cost);
+          console.log(data[i].qty);
+          var subtotalItem = data[i].cost * data[i].qty;
+          subtotal += subtotalItem;
+          console.log(subtotal);
+        }
+        vm.invoiceTotals.push(subtotal);
       }
 
       // vm.other = function(services){
