@@ -57,7 +57,7 @@
 			<tr>
 				<td class="col-xs-8"></td>
 				<td class="col-xs-2">Subtotal</td>
-				<td class="col-xs-2">{{view.invoiceTotals.subtotal | currency}}</td>
+				<td class="col-xs-2">{{view.invoiceTotals[0] | currency}}</td>
 			</tr>
 			<tr>
 				<td class="col-xs-8"></td>
@@ -67,17 +67,17 @@
 			<tr>
 				<td class="col-xs-8"></td>
 				<td class="col-xs-2">Sales Tax</td>
-				<td class="col-xs-2"> <!-- ng-init="salesTax = subtotal * .0925" -->{{salesTax | currency}}</td>
+				<td class="col-xs-2"> <!-- ng-init="salesTax = view.invoiceTotals[0] * .0925" -->{{view.invoiceTotals[0] * .0925 | currency}}</td>
 			</tr>
 			<tr>
 				<td class="col-xs-8"></td>
 				<td class="col-xs-2">Other</td>
-				<td class="col-xs-2">{{view.other | currency}}</td>
+				<td class="col-xs-2">{{view.invoiceTotals[1] | currency}}</td>
 			</tr>
 			<tr>
 				<td class="col-xs-8"></td>
 				<td class="col-xs-2">Total</td>
-				<td class="col-xs-2"> <!-- ng-init="total = subtotal + salesTax + other" -->{{total | currency}}</td>
+				<td class="col-xs-2"> <!-- ng-init="total = subtotal + salesTax + other" -->{{(view.invoiceTotals[0] * 1.0925 + view.invoiceTotals[1]) | currency}}</td>
 			</tr>
 		</table>
 	</div>

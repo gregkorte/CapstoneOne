@@ -15,7 +15,8 @@
         vm.leadingZeros(data[2].invoiceNumber);
         // console.log(data[0]);
         vm.subtotal(data[0]);
-        // vm.other(data[1]);
+        console.log(data[1]);
+        vm.other(data[1]);
       });
 
      vm.leadingZeros = function(number){
@@ -48,11 +49,21 @@
         vm.invoiceTotals.push(subtotal);
       }
 
-      // vm.other = function(services){
-      //   console.log('other running....');
-      //   console.log(services);
-      //   return;
-      // }
+      vm.other = function(data){
+        console.log('other running....');
+        var other = 0;
+        var cost;
+        var qty;
+        console.log(data);
+        for (var i = 0; i < data.length; i++){
+          console.log(data[i].cost);
+          console.log(data[i].qty);
+          var otherItem = data[i].cost * data[i].qty;
+          other += otherItem;
+          console.log(other);
+        }
+        vm.invoiceTotals.push(other);
+      }
 
     })
     .controller('ModifyInvoiceController', function($routeParams, invoiceFactory){
