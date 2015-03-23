@@ -79,6 +79,18 @@
         invoiceFactory.editInvoice(id, vm.newInvoice);
       };
 
+      vm.leadingZeros = function(number){
+        console.log('leadingZeros running....');
+        // console.log(number);
+        vm.invoiceNumber = number.toString();
+        if (vm.invoiceNumber.length === 1){
+          vm.invoiceNumber = "00" + vm.invoiceNumber;
+        } else if (vm.invoiceNumber.length === 2){
+          vm.invoiceNumber = "0" + vm.invoiceNumber;
+        } else {
+        }
+        return vm.invoiceNumber;
+      };
 
     })
     .controller('ListInvoiceController', function($scope, invoiceFactory){
