@@ -1,0 +1,109 @@
+<div class="formContainer">
+  <form name="newInvoiceForm" ng-submit="newInvoiceForm.$valid && modify.addNewInvoice()" novalidate>
+
+<!--CUSTOMERS-->
+    <div class="form-group" ng-controller="ListCustomersController as customerList">
+      <div class="row">
+        <div class="col-xs-6">
+          <label>Select Customer:</label>
+        </div>
+        <div class="col-xs-2">
+          <label for="invoiceNumber">Invoice#:</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <select class="form-control">
+            <option disabled>{{modify.newInvoice[2].customer.lastName}},  {{modify.newInvoice[2].customer.firstName}}</option>
+          </select>
+        </div>
+        <div class="col-xs-2">
+          <input disabled id="invoiceNumber" type="number" class="form-control" ng-model="modify.newInvoice[2].invoiceNumber">
+        </div>
+      </div>
+    </div>
+
+     <!-- ng-change="modify.leadingZeros(modify.newInvoice.invoiceNumber)" -->
+
+<!--SERVICES-->
+    <div class="form-group" ng-controller="ServiceController as serviceList">
+      <div class="row">
+        <div class="col-xs-6">
+          <label for="serviceSelect">Select Service:</label>
+        </div>
+        <div class="col-xs-2">
+          <label for="serviceQty">Qty:</label>
+        </div>
+      </div>
+      <div id="selectService" class="row">
+        <div class="col-xs-6">
+        <select id="serviceSelect" class="form-control" ng-disabled="disableSelect" ng-model="modify.newInvoice.items.services.service.id" ng-options="serviceId as service.name for (serviceId, service) in serviceList.services"></select>
+        </div>
+        <div class="col-xs-2">
+          <input id="serviceQty" type="number" class="form-control" ng-model="modify.newInvoice.items.services.service.qty" value="1" min="1">
+        </div>
+
+      <div class="modifyInvoiceItem">
+        <a href ng-click="modify.addServices(modify.newInvoice.items.services.service.id, modify.newInvoice.items.services.service.qty)"class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Service</a>
+      </div>
+    </div>
+  </div>
+
+<!--PRODUCTS-->
+  <div class="form-group" ng-controller="ProductController as productList">
+    <div class="row">
+      <div class="col-xs-6">
+        <label for="productSelect">Select Product:</label>
+      </div>
+      <div class="col-xs-2">
+        <label for="productQty">Qty:</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <select id="productSelect" class="form-control" ng-model="modify.newInvoice[0]" ng-options="productId as product.name for (productId, product) in productList.products"></select>
+      </div>
+      <div class="col-xs-2">
+        <input id="productQty" type="number" class="form-control" ng-model="modify.newInvoice.items.products.product.qty" value="1" min="1">
+      </div>
+
+      <div class="modifyInvoiceItem">
+        <a href ng-click="modify.addProducts(modify.newInvoice.items.products.product.id, modify.newInvoice.items.products.product.qty)" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Product</a>
+      </div>
+    </div>
+  </div>
+
+<!--SUBMIT-->
+    <input class="btn btn-primary btn-lg btn-block" type="submit" value="Update Invoice" ng-disabled="newInvoiceForm.$invalid" />
+  </form>
+
+<!--INVOICE SUMMARY-->
+  <h3>Invoice Summary for {{modify.newInvoice[2].customer.firstName}} {{modify.newInvoice[2].customer.lastName}}</h3>
+  <div class="table-responsive table-condensed invoiceItemizedList">
+    <table class="table table-bordered table-striped">
+      <thead class="invoiceHeader">
+        <tr>
+          <th class="col-xs-8">Description</th>
+          <th class="col-xs-1">Qty</th>
+          <th class="col-xs-1">Rate</th>
+          <th class="col-xs-2">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="newInvoice in modify.newInvoice[1]">
+          <td class="col-xs-8">{{newInvoice.name}}</td>
+          <td class="col-xs-1">{{newInvoice.qty}}</td>
+          <td class="col-xs-1">{{newInvoice.cost | currency}}</td>
+          <td class="col-xs-2 text-right">{{newInvoice.qty * newInvoice.cost | currency}}</td>
+        </tr>
+        <tr ng-repeat="newInvoice in modify.newInvoice[0]">
+          <td class="col-xs-8">{{newInvoice.name}}</td>
+          <td class="col-xs-1">{{newInvoice.qty}}</td>
+          <td class="col-xs-1">{{newInvoice.cost | currency}}</td>
+          <td class="col-xs-2 text-right">{{newInvoice.qty * newInvoice.cost | currency}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

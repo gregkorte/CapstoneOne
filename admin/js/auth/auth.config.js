@@ -22,6 +22,9 @@
 	        controllerAs: 'changepw',
 	        private: true
 	      })
+	      .otherwise({
+	      	redirectTo: '/login'
+	      })
 	  })
 	      .run(function($rootScope, authFactory){
 		      $rootScope.$on('$routeChangeStart', function(event, nextRoute, priorRoute){

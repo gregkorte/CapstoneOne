@@ -50,5 +50,11 @@
       customerFactory.getAllCustomers(function(data){
         vm.customers = data;
       });
+
+      vm.removeCustomer = function(customerId){
+        customerFactory.deleteCustomer(customerId, function(){
+          delete vm.customers[customerId];
+        });
+      };
     })
 }());

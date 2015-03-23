@@ -72,11 +72,13 @@
 
       invoiceFactory.getInvoice(id, function(data){
         vm.newInvoice = data;
+        console.log(data);
       });
 
       vm.addNewInvoice = function(){
         invoiceFactory.editInvoice(id, vm.newInvoice);
       };
+
 
     })
     .controller('ListInvoiceController', function($scope, invoiceFactory){
@@ -84,7 +86,7 @@
 
       invoiceFactory.getAllInvoices(function(data){
         vm.invoices = data;
-        // console.log(data);
+        console.log(data);
       });
 
       vm.removeInvoice = function(invoiceId){
@@ -104,23 +106,6 @@
 
       vm.postInvoiceItems = [];
 
-      // vm.leadingZeros = function(number){
-      //   console.log('leadingZeros running....');
-      //   console.log(number);
-      //   vm.invoiceNumber = number.toString();
-      //   if (vm.invoiceNumber.length === 1){
-      //     vm.invoiceNumber = "00" + vm.invoiceNumber;
-      //   } else if (vm.invoiceNumber.length === 2){
-      //     vm.invoiceNumber = "0" + vm.invoiceNumber;
-      //   } else {
-      //   }
-      //   console.log(vm.invoiceNumber);
-      //   vm.postInvoiceItems.push(vm.newInvoice);
-      //   console.log(vm.postInvoiceItems);
-      //   // return vm.invoiceNumber;
-
-      // };
-
       vm.addNewInvoice = function(){
         var services = vm.invoiceServiceItems;
         var products = vm.invoiceProductItems;
@@ -138,14 +123,6 @@
           vm.newInvoice = _renewInvoiceForm();
         });
       };
-
-      // vm.addNewInvoice = function(){
-      //   invoiceFactory.createInvoice(vm.newInvoice, function(data);
-      //     vm.invoices = vm.newInvoice || {};
-      //     vm.invoices[data.firstName] = vm.newInvoice;
-      //     vm.newInvoice = _renewInvoiceForm();
-      //   });
-      // };
 
       vm.serviceInput = [];
       vm.serviceMerge = {};

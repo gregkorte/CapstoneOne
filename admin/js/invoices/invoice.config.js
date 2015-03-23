@@ -23,7 +23,7 @@
 	        private: true
 	      })
 	      .when('/invoices/:id/edit', {
-	        templateUrl: 'views/invoices/invoiceForm.html',
+	        templateUrl: 'views/invoices/invoiceEditForm.html',
 	        controller: 'ModifyInvoiceController',
 	        controllerAs: 'modify',
 	        private: true
