@@ -10,14 +10,20 @@
         <div class="col-xs-2">
           <label for="invoiceNumber">Invoice#:</label>
         </div>
+        <!-- <div class="col-xs-2">
+          <label for="invoiceDate">Date:</label>
+        </div> -->
       </div>
       <div class="row">
         <div class="col-xs-6">
           <select class="form-control" ng-model="modify.newInvoice.customer" ng-options="customer.lastName + ', ' + customer.firstName for (customerId, customer) in customerList.customers"></select>
         </div>
         <div class="col-xs-2">
-          <input id="invoiceNumber" type="number" class="form-control" ng-model="modify.newInvoice.invoiceNumber" min="1">
+          <input id="invoiceNumber" type="number" class="form-control" ng-model="modify.newInvoice.invoiceNumber">
         </div>
+        <!-- <div class="col-xs-2">
+          <input id="invoiceDate" type="date" class="form-control" ng-model="modify.newInvoice.invoiceDate">
+        </div> -->
       </div>
     </div>
 

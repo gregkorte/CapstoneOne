@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-xs-6">
           <select class="form-control">
-            <option disabled>{{modify.newInvoice[2].customer.lastName}},  {{modify.newInvoice[2].customer.firstName}}</option>
+            <option disabled>{{modify.newInvoice[2].customer.lastName}}, {{modify.newInvoice[2].customer.firstName}}</option>
           </select>
         </div>
         <div class="col-xs-2">
@@ -37,7 +37,7 @@
       </div>
       <div id="selectService" class="row">
         <div class="col-xs-6">
-        <select id="serviceSelect" class="form-control" ng-disabled="disableSelect" ng-model="modify.newInvoice.items.services.service.id" ng-options="serviceId as service.name for (serviceId, service) in serviceList.services"></select>
+        <select id="serviceSelect" class="form-control" ng-model="modify.newInvoice.items.services.service.id" ng-options="serviceId as service.name for (serviceId, service) in serviceList.services"></select>
         </div>
         <div class="col-xs-2">
           <input id="serviceQty" type="number" class="form-control" ng-model="modify.newInvoice.items.services.service.qty" value="1" min="1">
@@ -61,7 +61,7 @@
     </div>
     <div class="row">
       <div class="col-xs-6">
-        <select id="productSelect" class="form-control" ng-model="modify.newInvoice[0]" ng-options="productId as product.name for (productId, product) in productList.products"></select>
+        <select id="productSelect" class="form-control" ng-model="modify.newInvoice.items.products.product.id" ng-options="productId as product.name for (productId, product) in productList.products"></select>
       </div>
       <div class="col-xs-2">
         <input id="productQty" type="number" class="form-control" ng-model="modify.newInvoice.items.products.product.qty" value="1" min="1">

@@ -1,8 +1,15 @@
 <div class="customer_profile">
-<h1>{{show.customer.firstName}} {{show.customer.lastName}}</h1>
-<h2>{{show.customer.phone}}</h2>
-<h4>{{show.customer.address}}</h4>
-<h4>{{show.customer.city}}, {{show.customer.state}} {{show.customer.zipcode}}</h4>
-<h3>{{show.customer.email}}</h3>
-<p>{{show.customer.notes}}</p>
+	<span class="customer_info col-xs-7" >
+		<h1>{{show.customer.firstName}} {{show.customer.lastName}}</h1>
+		<h2>{{show.customer.phone}}</h2>
+		<h4>{{show.customer.address}}</h4>
+		<h4>{{show.customer.city}}, {{show.customer.state}} {{show.customer.zipcode}}</h4>
+		<h3>{{show.customer.email}}</h3>
+		<p>{{show.customer.notes}}</p>
+	</span>
+	<span class="customer_actions col-xs-5" >
+		<a href="">Send mail</a><br>
+		<a href="">Mail invoice</a><br>
+		<a href="">Edit customer</a><br>
+	</span>
 </div>

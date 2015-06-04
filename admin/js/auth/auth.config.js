@@ -16,6 +16,12 @@
 	        template: '',
 	        controller: 'LogoutController'
 	      })
+	      .when('/account', {
+	      	templateUrl: 'views/auth/account.html',
+	      	// controller: 'AccountController',
+	      	// controllerAs: 'account',
+	      	private: true
+	      })
 	      .when('/changepassword', {
 	        templateUrl: 'views/auth/changepassword.html',
 	        controller: 'ChangePasswordController',

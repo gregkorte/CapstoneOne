@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="(invoiceId, invoice) in list.invoices | orderBy:'invoice.customer.lastName'">
+      <tr ng-repeat="(invoiceId, invoice) in list.invoices">
         <td>{{invoice[2].customer.firstName}} {{invoice[2].customer.lastName}}</td>
         <td>{{invoice[2].customer.routeDay}}</td>
         <td>{{view.invoice.invoiceTotal}}</td>
